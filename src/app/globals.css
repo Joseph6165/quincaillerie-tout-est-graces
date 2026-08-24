@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  /* Couleurs de marque - orange Tout Est Grâce */
+  --color-brand-50: #FFF4EC;
+  --color-brand-100: #FFE3CC;
+  --color-brand-200: #FFC79A;
+  --color-brand-300: #FF9A52;
+  --color-brand-400: #F97C2E;
+  --color-brand-500: #F2600A;
+  --color-brand-600: #D95208;
+  --color-brand-700: #C9490E;
+  --color-brand-800: #9C3808;
+
+  /* Textes */
+  --color-ink: #1A1A1A;
+  --color-ink-soft: #5C5C5C;
+  --color-ink-faint: #9B9B9B;
+
+  /* Police */
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.4s ease-out both;
+  --animate-fade-in-up: fade-in-up 0.5s ease-out both;
+  --animate-scale-in: scale-in 0.3s ease-out both;
+  --animate-slide-in-right: slide-in-right 0.4s ease-out both;
+  --animate-shimmer: shimmer 1.8s linear infinite;
+  --animate-float: float 4s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(24px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes tag-cut {
+    from { clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px)); opacity: 0; transform: translateX(-8px); }
+    to { clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px)); opacity: 1; transform: translateX(0); }
+  }
+}
+
+body {
+  color: var(--color-ink);
+  background: #FAFAFA;
+  font-family: var(--font-sans);
+} 
