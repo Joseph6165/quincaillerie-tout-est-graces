@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FileDown, FileSpreadsheet } from "lucide-react";
 import Pagination from "@/components/ui/Pagination";
 import { exportActivityToPDF, exportActivityToExcel, TableRow } from "@/lib/export-table";
-
+import ScrollableTable from "@/components/ui/ScrollableTable";
 export default function ActivityLogTable({ rows }: { rows: TableRow[] }) {
   const [page, setPage] = useState(1);
   const pageSize = 10;
@@ -24,9 +24,9 @@ export default function ActivityLogTable({ rows }: { rows: TableRow[] }) {
           Exporter Excel
         </button>
       </div>
-
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="bg-white border border-black/[0.06] rounded-xl overflow-hidden overflow-x-auto">
-        <table className="w-full text-sm">
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="bg-white border border-black/[0.06] rounded-xl overflow-hidden">
+        <ScrollableTable>
+        <table className="w-full text-sm min-w-[600px]">
           <thead>
             <tr className="bg-ink text-left">
               <th className="px-5 py-3 font-mono text-[11px] text-white/70 font-medium">DATE</th>
@@ -47,6 +47,7 @@ export default function ActivityLogTable({ rows }: { rows: TableRow[] }) {
           </tbody>
         </table>
         {paged.length === 0 && <p className="text-center text-sm text-ink-faint py-10">Aucune activité enregistrée.</p>}
+        </ScrollableTable>
       </motion.div>
 
       <Pagination page={page} totalPages={totalPages} onChange={setPage} />

@@ -7,6 +7,7 @@ import SaleModal from "./SaleModal";
 import { getSaleReceipt } from "@/app/(dashboard)/ventes/actions";
 import { downloadReceiptPDF } from "@/lib/receipt-pdf";
 import Pagination from "@/components/ui/Pagination";
+import ScrollableTable from "@/components/ui/ScrollableTable";
 interface SaleRow {
   id: string;
   num: string;
@@ -57,8 +58,9 @@ export default function VentesPageClient({
         </button>
       </div>
 
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="hidden md:block bg-white border border-black/[0.06] rounded-xl overflow-hidden overflow-x-auto">
-        <table className="w-full text-sm">
+           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="hidden md:block bg-white border border-black/[0.06] rounded-xl overflow-hidden">
+        <ScrollableTable>
+        <table className="w-full text-sm min-w-[640px]">
           <thead>
             <tr className="border-b border-black/[0.06] text-left">
               <th className="px-5 py-3 font-mono text-[11px] text-ink-faint font-medium">N° VENTE</th>
@@ -89,6 +91,7 @@ export default function VentesPageClient({
           </tbody>
         </table>
         {sales.length === 0 && <p className="text-center text-sm text-ink-faint py-10">Aucune vente enregistrée pour le moment.</p>}
+        </ScrollableTable>
       </motion.div>
 
       <div className="md:hidden space-y-3">

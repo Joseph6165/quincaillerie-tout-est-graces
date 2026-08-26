@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import Pagination from "@/components/ui/Pagination";
 import StockMovementModal from "./StockMovementModal";
-
+import ScrollableTable from "@/components/ui/ScrollableTable";
 interface MovementRow {
   id: string;
   date: string;
@@ -43,8 +43,9 @@ export default function StockPageClient({
         </button>
       </div>
 
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="bg-white border border-black/[0.06] rounded-xl overflow-hidden overflow-x-auto">
-        <table className="w-full text-sm">
+           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="bg-white border border-black/[0.06] rounded-xl overflow-hidden">
+        <ScrollableTable>
+        <table className="w-full text-sm min-w-[720px]">
           <thead>
             <tr className="border-b border-black/[0.06] text-left">
               <th className="px-5 py-3 font-mono text-[11px] text-ink-faint font-medium">DATE</th>
@@ -74,6 +75,7 @@ export default function StockPageClient({
           </tbody>
         </table>
         {paged.length === 0 && <p className="text-center text-sm text-ink-faint py-10">Aucune réception enregistrée.</p>}
+        </ScrollableTable>
       </motion.div>
 
       <Pagination page={page} totalPages={totalPages} onChange={setPage} />

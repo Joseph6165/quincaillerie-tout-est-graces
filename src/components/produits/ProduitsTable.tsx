@@ -8,6 +8,7 @@ import { getStockStatus, STOCK_STATUS_STYLES } from "@/lib/stock-alerts";
 import { deleteProduct } from "@/app/(dashboard)/produits/actions";
 import ProductModal, { ProductFormValues } from "./ProductModal";
 import Pagination from "@/components/ui/Pagination";
+import ScrollableTable from "@/components/ui/ScrollableTable";
 interface ProductRow {
   id: string;
   code: string;
@@ -100,13 +101,14 @@ export default function ProduitsTable({
         )}
       </div>
 
-      <motion.div
+           <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="bg-white border border-black/[0.06] rounded-xl overflow-hidden overflow-x-auto"
+        className="bg-white border border-black/[0.06] rounded-xl overflow-hidden"
       >
-        <table className="w-full text-sm">
+        <ScrollableTable>
+        <table className="w-full text-sm min-w-[640px]">
           <thead>
             <tr className="border-b border-black/[0.06] text-left">
               <th className="px-5 py-3 font-mono text-[11px] text-ink-faint font-medium">CODE</th>
@@ -169,6 +171,7 @@ export default function ProduitsTable({
         {filtered.length === 0 && (
           <p className="text-center text-sm text-ink-faint py-10">Aucun produit ne correspond à votre recherche.</p>
         )}
+                </ScrollableTable>
       </motion.div>
        <Pagination page={page} totalPages={totalPages} onChange={setPage} />
 

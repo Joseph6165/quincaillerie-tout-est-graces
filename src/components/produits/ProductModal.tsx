@@ -69,8 +69,7 @@ export default function ProductModal({
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
-            <div className="bg-white rounded-xl w-full max-w-md p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
-              <div className="flex items-center justify-between mb-5">
+<div className="bg-white rounded-xl w-full max-w-md p-5 sm:p-6 mx-4 shadow-xl max-h-[85vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>              <div className="flex items-center justify-between mb-5">
                 <h2 className="text-base font-semibold text-ink">
                   {editing ? "Modifier le produit" : "Nouveau produit"}
                 </h2>

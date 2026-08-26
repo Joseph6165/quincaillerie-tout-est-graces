@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import type { Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -81,8 +82,8 @@ export default function LoginPage() {
         <div className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full border border-white/[0.08]" />
 
         <div className="relative z-10 flex flex-col justify-between p-12 w-full">
-          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="flex items-center gap-2">
-            <Wrench className="text-brand-400" size={22} strokeWidth={2.5} />
+                   <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="flex items-center gap-2">
+            <Image src="/logo.png" alt="Tout Est Grâce" width={32} height={32} className="rounded" />
             <span className="text-white font-semibold tracking-tight">Tout Est Grâce</span>
           </motion.div>
 

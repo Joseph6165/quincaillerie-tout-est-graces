@@ -7,7 +7,7 @@ import { Wrench, X } from "lucide-react";
 import { useCurrentUser } from "@/context/UserContext";
 import { getNavForRole } from "@/lib/roles";
 import LogoutButton from "./LogoutButton";
-
+import Image from "next/image";
 export default function Sidebar({
   isOpen,
   onClose,
@@ -23,11 +23,8 @@ export default function Sidebar({
 
   const content = (
     <>
-      <div className="flex items-center justify-between gap-2.5 px-6 py-6 border-b border-black/[0.06]">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center shrink-0">
-            <Wrench size={16} className="text-white" />
-          </div>
+            <div className="flex items-center gap-2.5">
+          <Image src="/logo.png" alt="Tout Est Grâce" width={36} height={36} className="rounded-lg shrink-0" />
           <div>
             <p className="text-sm font-semibold text-ink leading-tight">Tout Est Grâce</p>
             <p className="text-[10px] font-mono text-ink-faint">GESTION.QUINCAILLERIE</p>
