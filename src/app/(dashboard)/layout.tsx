@@ -1,5 +1,4 @@
-
-export const dynamic = "force-dynamic";
+export const revalidate = 5;
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";

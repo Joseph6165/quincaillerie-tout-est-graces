@@ -69,9 +69,10 @@ export async function getDashboardData() {
   const monthTrend = totalLastMonth > 0 ? Math.round(((totalThisMonth - totalLastMonth) / totalLastMonth) * 100) : null;
 
   // --- Produits vendus : chiffre d'affaires et quantités ---
-  const allItems = await prisma.saleItem.findMany({
-    select: { productId: true, quantity: true, unitPrice: true, product: { select: { name: true } } },
+   const allItems = await prisma.saleItem.findMany({
+    select: { productId: true, quantity: true, unitPrice: true, product: { select: { name: true } }, sale: { select: { createdAt: true } } },
   });
+  const allItemsWithDate = allItems;
   const productAgg: Record<string, { name: string; qty: number; revenue: number }> = {};
   allItems.forEach((it) => {
     if (!productAgg[it.productId]) productAgg[it.productId] = { name: it.product.name, qty: 0, revenue: 0 };
@@ -118,9 +119,9 @@ export async function getDashboardData() {
     return { start, end, label: `Sem. ${4 - idx}` };
   });
 
-  const allItemsWithDate = await prisma.saleItem.findMany({
-    select: { productId: true, quantity: true, product: { select: { name: true } }, sale: { select: { createdAt: true } } },
-  });
+  // const allItemsWithDate = await prisma.saleItem.findMany({
+  //   select: { productId: true, quantity: true, product: { select: { name: true } }, sale: { select: { createdAt: true } } },
+  // });
 
   const topProductNames = Object.entries(
     allItemsWithDate.reduce((acc, it) => {

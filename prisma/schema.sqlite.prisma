@@ -1,0 +1,134 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  VENDEUR
+  MAGASINIER
+}
+
+enum MovementType {
+  ENTREE
+  SORTIE
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  sales           Sale[]
+  stockMovements  StockMovement[]
+  notifications Notification[]
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  products Product[]
+}
+
+model Product {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  name          String
+  categoryId    String
+  category      Category @relation(fields: [categoryId], references: [id])
+  stock         Int      @default(0)
+  minStock      Int      @default(5)
+  purchasePrice Int
+  sellingPrice  Int
+  archived      Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  stockMovements StockMovement[]
+  saleItems      SaleItem[]
+}
+model StockMovement {
+  id            String       @id @default(cuid())
+  productId     String
+  product       Product      @relation(fields: [productId], references: [id])
+  type          MovementType
+  quantity      Int
+  reason        String
+  previousStock Int?
+  newStock      Int?
+  supplierName  String?
+  supplierPhone String?
+  userId        String
+  user          User         @relation(fields: [userId], references: [id])
+  createdAt     DateTime     @default(now())
+}
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String?
+   email     String?
+  createdAt DateTime @default(now())
+
+  sales Sale[]
+}
+
+model Sale {
+  id        String     @id @default(cuid())
+  number    String     @unique
+  clientId  String?
+  client    Client?    @relation(fields: [clientId], references: [id])
+  userId    String
+  user      User       @relation(fields: [userId], references: [id])
+  total     Int
+  createdAt DateTime   @default(now())
+
+  items SaleItem[]
+}
+
+model SaleItem {
+  id        String  @id @default(cuid())
+  saleId    String
+  sale      Sale    @relation(fields: [saleId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  unitPrice Int
+}
+
+model Supplier {
+  id           String   @id @default(cuid())
+  name         String
+  contactName  String?
+  phone        String?
+  category     String?
+  lastDelivery DateTime?
+  createdAt    DateTime @default(now())
+}
+model Notification {
+  id        String   @id @default(cuid())
+  entity    String
+  type      String
+  message   String
+  read      Boolean  @default(false)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+model Settings {
+  id                    String  @id @default("singleton")
+  whatsappPhoneNumberId String?
+  whatsappAccessToken   String?
+  whatsappTemplateName  String?
+  smtpHost              String?
+  smtpPort              Int?
+  smtpUser              String?
+  smtpPassword          String?
+  smtpFromEmail         String?
+    }
