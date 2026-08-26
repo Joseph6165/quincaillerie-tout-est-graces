@@ -23,17 +23,15 @@ export default function Sidebar({
 
   const content = (
     <>
-            <div className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="Tout Est Grâce" width={36} height={36} className="rounded-lg shrink-0" />
-          <div>
-            <p className="text-sm font-semibold text-ink leading-tight">Tout Est Grâce</p>
-            <p className="text-[10px] font-mono text-ink-faint">GESTION.QUINCAILLERIE</p>
-          </div>
-        </div>
-        <button onClick={onClose} className="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg hover:bg-black/[0.04] text-ink-soft">
-          <X size={18} />
-        </button>
-      </div>
+        <div className="flex items-center justify-between p-4 border-b border-gray-100">
+  <div className="flex items-center gap-3">
+    <Image src="/logo.png" alt="Tout Est Grâce" width={36} height={36} className="rounded-lg shrink-0" />
+    <span className="font-semibold text-gray-900">Tout Est Grâce</span>
+  </div>
+  <button onClick={onClose} className="p-1 rounded-lg text-gray-400 hover:bg-gray-100 lg:hidden">
+    <X size={18} />
+  </button>
+</div>
 
       <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
         {items.map((navItem) => {
