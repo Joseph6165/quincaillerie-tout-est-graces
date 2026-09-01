@@ -27,7 +27,7 @@ export default async function ClientsPage() {
 
   return (
     <div>
-      <PageHeader tag="RELATION CLIENT" title="Clients" subtitle={`${rows.length} clients enregistrés`} />
+      <PageHeader tag="RELATION CLIENT" title="Historique des clients" subtitle={`${rows.length} clients enregistrés`} />      
       <ClientsTable clients={rows} />
     </div>
   );

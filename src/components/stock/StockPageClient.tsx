@@ -58,18 +58,18 @@ export default function StockPageClient({
             </tr>
           </thead>
           <tbody className="divide-y divide-black/[0.05]">
-            {paged.map((m) => (
+                     {paged.map((m) => (
               <tr key={m.id} className="hover:bg-[#FAFAFA] transition-colors">
-                <td className="px-5 py-3.5 font-mono text-xs text-ink-faint">{m.date}</td>
-                <td className="px-5 py-3.5 text-ink font-medium">{m.fournisseur}</td>
+                <td className="px-5 py-3.5 font-mono text-sm font-semibold text-ink-soft">{m.date}</td>
+                <td className="px-5 py-3.5 text-ink font-bold">{m.fournisseur}</td>
                 <td className="px-5 py-3.5">
-                  <p className="text-ink">{m.produit}</p>
+                  <p className="text-ink font-semibold">{m.produit}</p>
                   <p className="font-mono text-[11px] text-ink-faint">{m.code}</p>
                 </td>
-                <td className="px-5 py-3.5 font-mono text-xs text-ink-faint">{m.previousStock ?? "—"} u</td>
-                <td className="px-5 py-3.5 font-mono text-xs font-medium text-emerald-600">+{m.qte} u</td>
-                <td className="px-5 py-3.5 font-mono text-xs font-medium text-brand-600">{m.newStock ?? "—"} u</td>
-                <td className="px-5 py-3.5 text-ink-soft">{m.auteur}</td>
+                <td className="px-5 py-3.5 font-mono text-base font-semibold text-ink-soft">{m.previousStock ?? "—"} u</td>
+                <td className="px-5 py-3.5 font-mono text-base font-bold text-emerald-600">+{m.qte} u</td>
+                <td className="px-5 py-3.5 font-mono text-base font-bold text-brand-600">{m.newStock ?? "—"} u</td>
+                <td className="px-5 py-3.5 text-ink-soft font-semibold">{m.auteur}</td>
               </tr>
             ))}
           </tbody>

@@ -65,7 +65,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Gestion des stocks", href: "/stock", icon: Warehouse, roles: ["MAGASINIER"], badgeKey: "lowStock" },
   { label: "Ventes", href: "/ventes", icon: ShoppingCart, roles: ["VENDEUR"] },
   { label: "Fournisseurs", href: "/fournisseurs", icon: Truck, roles: ["ADMIN", "MAGASINIER"] },
-  { label: "Clients", href: "/clients", icon: Users, roles: ["VENDEUR"] },
+  { label: "Historique des clients", href: "/clients", icon: Users, roles: ["VENDEUR"] },
   { label: "Rapports", href: "/rapports", icon: FileBarChart, roles: ["ADMIN"] },
   { label: "Utilisateurs", href: "/utilisateurs", icon: UserCog, roles: ["ADMIN"] },
   { label: "Paramètres", href: "/parametres", icon: Settings, roles: ["ADMIN"], badgeKey: "notifications" },

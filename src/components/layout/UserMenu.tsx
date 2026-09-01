@@ -6,11 +6,13 @@ import { signOut } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LogOut, ChevronDown, Settings } from "lucide-react";
 import { useCurrentUser } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
 
 export default function UserMenu() {
   const { user } = useCurrentUser();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -19,11 +21,14 @@ export default function UserMenu() {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
-
+async function handleLogout() {
+  await signOut({ redirect: false });
+  router.push("/login");
+  router.refresh();
+}
   return (
     <div ref={ref} className="relative">
-      <button onClick={() => setOpen((o) => !o)} className="flex items-center gap-2 pl-1 pr-2 py-1 rounded-lg hover:bg-black/[0.03] transition-colors">
-        <div className="w-8 h-8 rounded-full bg-ink flex items-center justify-center text-white text-xs font-mono font-medium shrink-0">{user.initials}</div>
+<button onClick={handleLogout} className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors">        <div className="w-8 h-8 rounded-full bg-ink flex items-center justify-center text-white text-xs font-mono font-medium shrink-0">{user.initials}</div>
         <div className="hidden md:block text-left">
           <p className="text-xs font-medium text-ink leading-tight">{user.name}</p>
           <p className="text-[10px] font-mono text-ink-faint">{user.roleLabel.toUpperCase()}</p>
