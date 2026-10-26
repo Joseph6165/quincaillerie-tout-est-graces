@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Plus, Pencil, Trash2, Bell } from "lucide-react";
+import { Plus, Pencil, Trash2, Bell, AlertTriangle } from "lucide-react";
 import Pagination from "@/components/ui/Pagination";
 
 interface NotificationRow {
   id: string;
   entity: string;
-  type: "CREATE" | "UPDATE" | "DELETE";
+  type: "CREATE" | "UPDATE" | "DELETE" | "ALERT";
   message: string;
   time: string;
 }
@@ -16,6 +16,7 @@ interface NotificationRow {
 const TYPE_STYLES: Record<NotificationRow["type"], { icon: typeof Plus; badge: string }> = {
   CREATE: { icon: Plus, badge: "bg-emerald-50 text-emerald-600" },
   UPDATE: { icon: Pencil, badge: "bg-amber-50 text-amber-600" },
+  ALERT: { icon: AlertTriangle, badge: "bg-red-100 text-red-600" },
   DELETE: { icon: Trash2, badge: "bg-red-50 text-red-500" },
 };
 

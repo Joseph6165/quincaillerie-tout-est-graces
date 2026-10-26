@@ -22,7 +22,7 @@ export default async function ParametresPage() {
   const rows = notifications.map((n) => ({
     id: n.id,
     entity: n.entity,
-    type: n.type as "CREATE" | "UPDATE" | "DELETE",
+    type: n.type as "CREATE" | "UPDATE" | "DELETE" | "ALERT",
     message: n.message,
     time: n.createdAt.toLocaleString("fr-FR", { dateStyle: "short", timeStyle: "short" }),
   }));

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import StockRuptureWatcher from "./StockRuptureWatcher";
 
 export default function DashboardShell({
   children,
@@ -17,6 +18,7 @@ export default function DashboardShell({
 
   return (
     <div className="flex min-h-screen bg-[#FAFAFA]">
+      <StockRuptureWatcher />
       <Sidebar isOpen={mobileOpen} onClose={() => setMobileOpen(false)} badges={badges} />
       <div className="flex-1 flex flex-col min-w-0">
         <Header onMenuClick={() => setMobileOpen(true)} unreadCount={unreadCount} />
